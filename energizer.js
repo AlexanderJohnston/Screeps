@@ -10,44 +10,27 @@
 var room1 = Game.rooms['W2N5'];
 var control = room1.controller;
 var spawn = Game.spawns.Pixelation;
-var unitArray = []; // Store units for return.
  
  function spawnCreeps(){
 	// Check to see if pix4 is alive or not, then create him. 
 	if(spawn.canCreateCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],'pix4') == 0){
 		spawn.createCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],'pix4');
-		
-		// Push the creep object onto the array.
-		Game.creeps.pix4.memory.role = 'energizer';
-		unitArray.push(Game.creeps.pix4);
 	}
 	// Check to see if pix4 is alive or not, then create him. 
 	if(spawn.canCreateCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],'pix6') == 0){
 		spawn.createCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],'pix6');
-		
-		// Push the creep object onto the array.
-		Game.creeps.pix6.memory.role = 'energizer';
-		unitArray.push(Game.creeps.pix6);
 	}
 	// Check to see if pix7 is alive or not, then create him. 
 	if(spawn.canCreateCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],'pix7') == 0){
 		spawn.createCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],'pix7');
-		
-		// Push the creep object onto the array.
-		Game.creeps.pix7.memory.role = 'energizer';
-		unitArray.push(Game.creeps.pix7);
 	}
 	// Check to see if pix8 is alive or not, then create him.
 	if(spawn.canCreateCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],'pix8') == 0){
 		spawn.createCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],'pix8');
-		
-		// Push the creep object onto the array.
-		Game.creeps.pix8.memory.role = 'energizer';
-		unitArray.push(Game.creeps.pix8);
 	}
 }
  
- function setRoles(){
+ function setRoles(unitArray){
 	// Push the creep object onto the array.
 	if(Game.creeps.pix4){
 		Game.creeps.pix4.memory.role = 'energizer';
@@ -68,13 +51,15 @@ var unitArray = []; // Store units for return.
 		Game.creeps.pix8.memory.role = 'energizer';
 		unitArray.push(Game.creeps.pix8);
 	}
+	return unitArray;
 }
 
 module.exports = {
 
 	init(){
+	    var unitArray = []; // Store units for return.
 		spawnCreeps();
-		setRoles();
+		unitArray = setRoles(unitArray);
 		return unitArray;
 	}
 };

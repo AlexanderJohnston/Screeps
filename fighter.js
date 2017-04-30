@@ -10,32 +10,29 @@
 var room1 = Game.rooms['W2N5'];
 var control = room1.controller;
 var spawn = Game.spawns.Pixelation;
-var unitArray = []; // Store units for return.
  
  function spawnCreeps(){
 	// Check to see if fight is alive or not, then create him. 
 	if(spawn.canCreateCreep([TOUGH,TOUGH,TOUGH,ATTACK,ATTACK,ATTACK,ATTACK,HEAL,MOVE,MOVE,MOVE,MOVE],'fight') == 0){
 		spawn.createCreep([TOUGH,TOUGH,TOUGH,ATTACK,ATTACK,ATTACK,ATTACK,HEAL,MOVE,MOVE,MOVE,MOVE],'fight');
-		
-		// Push the creep object onto the array.
-		Game.creeps.pix.memory.role = 'fighter';
-		unitArray.push(Game.creeps.pix);
 	}
 }
  
- function setRoles(){
+ function setRoles(unitArray){
 	// Push the creep object onto the array.
 	if(Game.creeps.fight){
 		Game.creeps.fight.memory.role = 'fighter';
 		unitArray.push(Game.creeps.fight);
 	}
+	return unitArray;
 }
 
 module.exports = {
 
 	init(){
+	    var unitArray = []; // Store units for return.
 		spawnCreeps();
-		setRoles();
+		unitArray = setRoles(unitArray);
 		return unitArray;
 	}
 };
