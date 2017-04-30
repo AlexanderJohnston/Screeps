@@ -13,13 +13,13 @@ var spawn = Game.spawns.Pixelation;
  
  function spawnCreeps(){
 	// Check to see if pix3 is alive or not, then create him. 
-	if(spawn.canCreateCreep([WORK,WORK,WORK,WORK,WORK,MOVE],'pix3') == 0){
-		spawn.createCreep([WORK,WORK,WORK,WORK,WORK,MOVE],'pix3');
+	if(spawn.canCreateCreep([WORK,WORK,WORK,WORK,WORK,WORK,WORK,MOVE,MOVE],'pix3') == 0){
+		spawn.createCreep([WORK,WORK,WORK,WORK,WORK,WORK,WORK,MOVE,MOVE],'pix3');
 	}
 	
 	// Check to see if pix13 is alive or not, then create him. 
-	if(spawn.canCreateCreep([WORK,WORK,WORK,WORK,WORK,MOVE],'pix13') == 0){
-		spawn.createCreep([WORK,WORK,WORK,WORK,WORK,MOVE],'pix13');
+	if(spawn.canCreateCreep([WORK,WORK,WORK,WORK,WORK,WORK,WORK,MOVE,MOVE],'pix13') == 0){
+		spawn.createCreep([WORK,WORK,WORK,WORK,WORK,WORK,WORK,MOVE,MOVE],'pix13');
 	}
 }
  
