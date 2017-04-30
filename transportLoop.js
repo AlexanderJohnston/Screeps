@@ -28,8 +28,10 @@ var containers = room1.find(FIND_STRUCTURES,
 		}
 		else{
 			var dropOff = control; // No containers available, so upgrade control.
+			break;
 		}
 		return dropOff; // Return the container we've selected.
+		break;
 	}
 }
 

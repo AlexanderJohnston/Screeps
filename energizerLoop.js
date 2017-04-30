@@ -31,17 +31,16 @@ function findEmptyExtension(creep){
 			var dropOffEnergizer = extensions[extension];
 			return dropOffEnergizer;
 		}
-		else{
-			// Fill up spawn if no extensions are available.
-			if(spawn.energy < spawn.energyCapacity){ 
-				var dropOffEnergizer = spawn; 
-				return dropOffEnergizer;
-			}
-			else{ 
-				var dropOffEnergizer = control; // Fill up control if spawn is not available.
-				return dropOffEnergizer 
-			} 
-		}
+	}
+
+	// Fill up spawn if no extensions are available.
+	if(spawn.energy < spawn.energyCapacity && dropOffEnergizer == null){ 
+		var dropOffEnergizer = spawn; 
+		return dropOffEnergizer;
+	}
+	else{ 
+		var dropOffEnergizer = control; // Fill up control if spawn is not available.
+		return dropOffEnergizer;
 	}
 }
 
@@ -57,11 +56,11 @@ function energyDeliver(creep){
 	// Find an empty extension.
 	var dropOffEnergizer = findEmptyExtension(creep);
 	// Check to see if creep is within range of control.
-	if(creep.transfer(dropOffEnergizer, RESOURCE_ENERGY, _.sum(creep.carry)) == ERR_NOT_IN_RANGE){
+	if(creep.transfer(dropOffEnergizer, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
 		creep.moveTo(dropOffEnergizer);
 	}
 	else{ // Creep is within range and can transfer energy.
-		creep.transfer(dropOffEnergizer, RESOURCE_ENERGY, dropOffEnergizer.carryCapacity);
+		creep.transfer(dropOffEnergizer, RESOURCE_ENERGY);
 		console.log("Energizer: " + creep.name + " POWERING " + dropOffEnergizer + " in progress.")
 	}
 	// Once the creep has emptied out their energy, disable delivery.
@@ -73,13 +72,35 @@ function energyDeliver(creep){
 function energyAcquire(creep){
 	var selectedContainer = bestContainer(containers); // Selects the highest energy container.
 	console.log("Energizer: " + creep.name + " restocking from highest container " + selectedContainer + ".")
-	if(creep.withdraw(selectedContainer, RESOURCE_ENERGY, (creep.carryCapacity - _.sum(creep.carry))) == ERR_NOT_IN_RANGE){
+	if(creep.withdraw(selectedContainer, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
 		creep.moveTo(selectedContainer);
 	}
 	else{
-		creep.withdraw(selectedContainer, RESOURCE_ENERGY, creep.carryCapacity - _.sum(creep.carry));
+		creep.withdraw(selectedContainer, RESOURCE_ENERGY);
 	}
  }
+ 
+ // Function to determine highest quantity container.
+function bestContainer(list){
+    var i;
+    // Max store.
+    var a = 0;
+    
+    for (i = 0; i < list.length; i++){
+        // Get store count.
+        var b = _.sum(list[i].store)
+        if(a > b){
+            // keep a
+        }
+        else{
+            // keep b and list item
+            a = b
+            var fullestContainer = list[i]
+        }
+    }
+    // Return highest store.
+    return fullestContainer;
+}
  
 module.exports = {
 init(creep){

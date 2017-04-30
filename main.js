@@ -29,7 +29,17 @@ var energizers = energizer.init();
 var fighters = fighter.init();
 var transporters = transporter.init();
 
-
+// # Fighter # Harvests energy as fast as possible without moving.
+// Get a list of all creeps available.
+for(var selectedCreep in Game.creeps){
+	// Save the definition to our selected creep.
+	var creep = Game.creeps[selectedCreep];
+	// Check to ensure that the creep is a harvester.
+	if(containsObject(creep,fighters)){
+		var fightLoop = require('fightLoop');
+		fightLoop.init(creep);
+	}
+}
 // # HARVESTER # Harvests energy as fast as possible without moving.
 // Get a list of all creeps available.
 for(var selectedCreep in Game.creeps){

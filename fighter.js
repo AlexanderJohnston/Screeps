@@ -19,15 +19,15 @@ var unitArray = []; // Store units for return.
 		
 		// Push the creep object onto the array.
 		Game.creeps.pix.memory.role = 'fighter';
-		fighters.push(Game.creeps.pix);
+		unitArray.push(Game.creeps.pix);
 	}
 }
  
  function setRoles(){
 	// Push the creep object onto the array.
-	if(Game.creeps.fighter){
-		Game.creeps.fighter.memory.role = 'fighter';
-		fighters.push(Game.creeps.fighter);
+	if(Game.creeps.fight){
+		Game.creeps.fight.memory.role = 'fighter';
+		unitArray.push(Game.creeps.fight);
 	}
 }
 
