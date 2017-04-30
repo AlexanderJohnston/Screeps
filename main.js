@@ -51,7 +51,7 @@ for(var selectedCreep in Game.creeps){
 		var sources = room1.find(FIND_SOURCES_ACTIVE)
 		var bestNode = bestContainer(sources);
 		 //If the creep isn't next to the node, then move it.
-		 if(creep.pos.getRangeTo(bestNode.pos)>1){
+		 if(bestNode != null && creep.pos.getRangeTo(bestNode.pos)>1){
 			creep.moveTo(bestNode);
 		}
 		else{
