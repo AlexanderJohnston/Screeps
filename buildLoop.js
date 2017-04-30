@@ -31,7 +31,7 @@ function construction(creep, constructSite){
 
 function findRepairs(creep){
 	var repairs = room1.find(FIND_STRUCTURES, { filter: function(object){
-	if(object.hits < (object.hitsMax*.5)){
+	if(object.hits < (object.hitsMax*.5) && object.structureType != STRUCTURE_WALL){
 		return true; }}})
 	var located = creep.pos.findClosestByPath(repairs);
 	return located;
