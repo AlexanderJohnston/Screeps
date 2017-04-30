@@ -14,14 +14,14 @@ var extensions = room1.find(FIND_STRUCTURES,
 		}
 	})
 
-// Prepare the creeps.
+// Load the creep modules.
 var energizer = require('energizer');
 var fighter = require('fighter');
 var transporter = require ('transporter');
 var harvester = require ('harvester');
 var builder = require ('builder');
 	
-// Prepare the creep arrays.
+// Spawn the creeps, set their roles, and return an array of all available creeps in that role.
 var harvesters = harvester.init();
 var builders = builder.init();
 var transporters = transporter.init();
@@ -56,52 +56,10 @@ for(var selectedCreep in Game.creeps){
 	var currentCreep = Game.creeps[selectedCreep];
 	// Check to ensure that the creep is a transporter.
 	if(containsObject(currentCreep,transporters)){
-		// Save the closest container.
-		for(var container in containers){
-		    // Find an container with capacity.
-			if(_.sum(containers[container].store) < containers[container].storeCapacity){
-				var dropOff = containers[container];
-				break;
-			}
-			else{
-				var dropOff = control; 
-			}
-		}
-		// Check to see if the worker is full of energy.
-		if(_.sum(currentCreep.carry)==currentCreep.carryCapacity){
-			// Return home to deliver.
-			currentCreep.memory.deliver = true;
-		}
-		// While delivery is enabled, go home to turn it in.
-		if(currentCreep.memory.deliver == true){
-			// Check to see if creep is within range of control.
-			if(currentCreep.transfer(dropOff, RESOURCE_ENERGY, _.sum(currentCreep.carry)) == ERR_NOT_IN_RANGE){
-				currentCreep.moveTo(dropOff);
-			}
-			else if(currentCreep.transfer(dropOff, RESOURCE_ENERGY, _.sum(currentCreep.carry)) == ERR_FULL){
-				currentCreep.transfer(dropOff, RESOURCE_ENERGY, 1);
-			}
-			else{ // Creep is within range and can transfer energy.
-				currentCreep.transfer(dropOff, RESOURCE_ENERGY, _.sum(currentCreep.carry));
-				console.log("Transporter: " + currentCreep.name + " POWERING " + dropOff + " in progress.")
-			}
-			// Once the creep has emptied out their energy, disable delivery.
-			if(_.sum(currentCreep.carry)==0){
-					currentCreep.memory.deliver = false;
-				}
-				continue; // Keep on delivering until empty.
-		}
-		// This creep wasn't full, so it's going to find more energy.
-		else{
-			var droppedEnergy = currentCreep.pos.findClosestByPath(FIND_DROPPED_ENERGY)
-			if(currentCreep.pickup(droppedEnergy) == ERR_NOT_IN_RANGE){
-				currentCreep.moveTo(droppedEnergy);
-			}
-			else{
-				currentCreep.pickup(droppedEnergy);
-				console.log("Transporter: " + currentCreep.name + " PICKING UP " + droppedEnergy + ".")
-			}
-		}
+		// Pull in the transport module.
+		var transportLoop = require('transportLoop');
+		// Send the creep into the transportation loop.
+		transportLoop.init(currentCreep);
 	}
 }
 // # ENERGIZER # Refills the spawn point and extensions.
