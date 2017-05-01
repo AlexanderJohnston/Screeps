@@ -72,15 +72,15 @@ module.exports = {
         if(Memory.sQueue == undefined){
             Memory.sQueue = [];
         }
-    }
+    },
     
     initPowerQueue : function(){
         if(Memory.pQueue == undefined){
             Memory.pQueue = [];
         }
-    }
+    },
     
-    addCreep : function(creep, cPower, unshift)
+    addCreep : function(creep, cPower, unshift) // string, int, bool
     {
         this.initSpawnQueue();
         this.initPowerQueue();
@@ -91,10 +91,55 @@ module.exports = {
         }
         else{
             Memory.sQueue.push(creep);
+            Memory.pQueue.push(cPower)
         }
-    }
+    },
     
-    spawnCreep : function(creepType,creepLevel){ // string, int
-        var cType = creepType.toLowerCase());
+    spawnCreep : function(){
+        this.initSpawnQueue()
+        this.initPowerQueue()
+        
+        if(!Memory.sQueue.length){
+            return;
+        }
+        
+        var mySpawns = [];
+        for(var r in Game.rooms){
+            var selected = Game.rooms[r];
+            var mySpawn = selected.find(FIND_MY_SPAWNS)[0];
+            mySpawns.push(mySpawn);
+        }
+        
+        if(!spawns.length){
+            return; // No spawns available.
+        }
+        
+        var role = Memory.sQueue[0];
+        
+        if(typeof role == "string"){
+            role = { type: role, memory: { } };
+        }
+        
+        var me = this;
+        var toSpawnAt = mySpawns.filter(function(spawn){
+            return me.canSpawn(spawn, role.type);
+        });
+        
+        if(!toSpawnAt.length){
+            return; // No spawn found with sufficient energy.
+        }
+        
+        toSpawnAt = toSpawnAt[0]
+        
+        this.spawn(role.type, role.memory, toSpawnAt)
+        
+        Memory.sQueue.shift();
+    },
+    
+    spawn : function(role,memory,spawnPoint){
+        if(!spawnPoint){
+            spawnPoint = Game.spawns.Pixelation;
+        }
+        
     }
 };

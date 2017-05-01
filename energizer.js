@@ -3,7 +3,7 @@
  * module.exports.thing = 'a thing';
  *
  * You can import it from another modules like this:
- * var mod = require('fighter');
+ * var mod = require('energizer');
  * mod.thing == 'a thing'; // true
  */
  
@@ -11,14 +11,14 @@ var room1 = Game.rooms['W2N5'];
 var control = room1.controller;
 var spawn = Game.spawns.Pixelation;
  
- function spawnCreeps(){
+function spawnCreeps(){
 	// Check to see if pix4 is alive or not, then create him. 
 	if(spawn.canCreateCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],'pix4') == 0){
 		spawn.createCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],'pix4');
 	}
 	// Check to see if pix4 is alive or not, then create him. 
-	if(spawn.canCreateCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],'pix6') == 0){
-		spawn.createCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],'pix6');
+	if(spawn.canCreateCreep([WORK,CARRY,CARRY,CARRY,MOVE],'pix6') == 0){
+		spawn.createCreep([WORK,CARRY,CARRY,CARRY,MOVE],'pix6');
 	}
 	// Check to see if pix7 is alive or not, then create him. 
 	if(spawn.canCreateCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],'pix7') == 0){
@@ -30,7 +30,7 @@ var spawn = Game.spawns.Pixelation;
 	}
 }
  
- function setRoles(unitArray){
+function setRoles(unitArray){
 	// Push the creep object onto the array.
 	if(Game.creeps.pix4){
 		Game.creeps.pix4.memory.role = 'energizer';

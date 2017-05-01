@@ -51,12 +51,12 @@ function findEmptyExtension(creep){
 		var dropOffEnergizer = spawn; 
 		return dropOffEnergizer;
 	}
-	else if(emptyTurret != null && emptyTurret.energy < emptyTurret.energyCapacity && selectedExtension == null){
+	else if(emptyTurret != null && emptyTurret.energy < emptyTurret.energyCapacity && selectedExtension == null && spawn.energy == spawn.energyCapacity){
 		var dropOffEnergizer = emptyTurret;
 		return dropOffEnergizer;
 	}
-	else{ 
-		var dropOffEnergizer = control; // Fill up control if spawn is not available.
+	else if(emptyTurret == undefined && selectedExtension == null && spawn.energy == spawn.energyCapacity){ 
+		var dropOffEnergizer = room1.storage // Fill up storage if spawn is full.
 		return dropOffEnergizer;
 	}
 }
@@ -72,18 +72,20 @@ function energyFull(creep){
 function energyDeliver(creep){
 	// Find an empty extension.
 	var dropOffEnergizer = findEmptyExtension(creep);
-	// Check to see if creep is within range of control.
-	if(creep.transfer(dropOffEnergizer, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
-		creep.moveTo(dropOffEnergizer);
+	if (dropOffEnergizer != null){
+	    // Check to see if creep is within range of control.
+	    if(creep.transfer(dropOffEnergizer, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
+	    	creep.moveTo(dropOffEnergizer);
+	    }
+	    else{ // Creep is within range and can transfer energy.
+    		creep.transfer(dropOffEnergizer, RESOURCE_ENERGY);
+	    	console.log("Energizer: " + creep.name + " POWERING " + dropOffEnergizer + " in progress.")
+	    }
+	    // Once the creep has emptied out their energy, disable delivery.
+	    if(_.sum(creep.carry)==0){
+	    	creep.memory.deliver = false;
+	   	}
 	}
-	else{ // Creep is within range and can transfer energy.
-		creep.transfer(dropOffEnergizer, RESOURCE_ENERGY);
-		console.log("Energizer: " + creep.name + " POWERING " + dropOffEnergizer + " in progress.")
-	}
-	// Once the creep has emptied out their energy, disable delivery.
-	if(_.sum(creep.carry)==0){
-			creep.memory.deliver = false;
-		}
 }
 
 function energyAcquire(creep){

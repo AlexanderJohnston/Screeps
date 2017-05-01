@@ -13,6 +13,13 @@ var extensions = room1.find(FIND_STRUCTURES,
 			return true; }
 		}
 	})
+var storage = room1.find(FIND_STRUCTURES, {
+	filter: function(object){
+        if(object.structureType == STRUCTURE_STORAGE){
+	        return true;
+	    }
+	}
+}); 
 
 // Load the creep modules.
 var energizer = require('energizer');
@@ -20,6 +27,7 @@ var fighter = require('fighter');
 var transporter = require ('transporter');
 var harvester = require ('harvester');
 var builder = require ('builder');
+var upgrader = require('upgrader');
 	
 // Spawn the creeps, set their roles, and return an array of all available creeps in that role.
 var harvesters = harvester.init();
@@ -27,6 +35,22 @@ var builders = builder.init();
 var transporters = transporter.init();
 var energizers = energizer.init();
 var fighters = fighter.init();
+var upgraders = upgrader.init();
+
+// WHY THE FUCK AM I UNDER ATTACK
+var towers = room1.find(FIND_STRUCTURES,
+    // FIND MY TOWERS RIGHT NOW
+ { filter: function(object){
+  if(object.structureType == STRUCTURE_TOWER){
+   return true; }
+  }
+ })
+// FIGURE OUT WHO THE FUCK IS ATTACKING ME
+var enemies = room1.find(FIND_HOSTILE_CREEPS)
+for(var tower in towers){
+    // FIRE THE MISSLES!!!! FIRE THEM DO NOT STOP!!!
+    towers[tower].attack(enemies[0]);
+}
 
 // # Fighter # Harvests energy as fast as possible without moving.
 // Get a list of all creeps available.
@@ -58,7 +82,7 @@ for(var selectedCreep in Game.creeps){
 		}
 	}
 }
-// # TRANSPORTER # Upgrades the controller and fills containers.
+// # TRANSPORTER # Fills containers and then upgrades the controller.
 // Get a list of all creeps available.
 for(var selectedCreep in Game.creeps){
 	// Save the definition to our selected creep.
@@ -69,6 +93,19 @@ for(var selectedCreep in Game.creeps){
 		var transportLoop = require('transportLoop');
 		// Send the creep into the transportation loop.
 		transportLoop.init(creep);
+	}
+}
+// # UPGRADER # Upgrades the controller.
+// Get a list of all creeps available.
+for(var selectedCreep in Game.creeps){
+	// Save the definition to our selected creep.
+	var creep = Game.creeps[selectedCreep];
+	// Check to ensure that the creep is a transporter.
+	if(containsObject(creep,upgraders)){
+		// Pull in the transport module.
+		var upgradeLoop = require('upgraderLoop');
+		// Send the creep into the transportation loop.
+		upgradeLoop.init(creep);
 	}
 }
 // # ENERGIZER # Refills the spawn point and extensions.
