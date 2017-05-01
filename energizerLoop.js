@@ -12,7 +12,7 @@ var control = room1.controller;
 var spawn = Game.spawns.Pixelation;
 var containers = room1.find(FIND_STRUCTURES, 
 	{ filter: function(object){
-		if(object.structureType == STRUCTURE_CONTAINER){
+		if(object.structureType == STRUCTURE_CONTAINER || object.structureType == STRUCTURE_STORAGE){
 			return true; }
 		}
 	})
