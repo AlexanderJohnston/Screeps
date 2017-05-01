@@ -27,7 +27,6 @@ var builders = builder.init();
 var transporters = transporter.init();
 var energizers = energizer.init();
 var fighters = fighter.init();
-var transporters = transporter.init();
 
 // # Fighter # Harvests energy as fast as possible without moving.
 // Get a list of all creeps available.
