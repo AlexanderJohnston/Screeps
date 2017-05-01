@@ -40,6 +40,7 @@ var spawn = Game.spawns.Pixelation;
 		Game.creeps.fight3.memory.role = 'fighter';
 		unitArray.push(Game.creeps.fight3);
 	}
+	return unitArray;
 }
 
 module.exports = {
