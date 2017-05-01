@@ -12,11 +12,11 @@
  
 function refillEnergy(creep, energyStore){
         // Check to see if builder is within range for withdrawal.
-        if(creep.withdraw(energyStore, RESOURCE_ENERGY, (creep.carryCapacity - _.sum(creep.carry))) == ERR_NOT_IN_RANGE) {
+        if(creep.withdraw(energyStore, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
 			creep.moveTo(energyStore);
 		}
 		else{
-			creep.withdraw(energyStore, RESOURCE_ENERGY, (creep.carryCapacity - _.sum(creep.carry)));
+			creep.withdraw(energyStore, RESOURCE_ENERGY);
 			console.log("Builder: " + creep.name + " WITHDRAWING from highest container " + energyStore + " for REPAIR.");
 			}
     }
@@ -41,11 +41,11 @@ function repairing(creep, repairSite){
 	if(repairSite!=null){ // Ensure that the site exists.
 		if(creep.repair(repairSite)==ERR_NOT_ENOUGH_RESOURCES){ // Ensure that he has enough energy.
 			// Check to see if builder is within range for withdrawal.
-			if(creep.withdraw(dropOffBuilder, RESOURCE_ENERGY, (creep.carryCapacity - _.sum(creep.carry))) == ERR_NOT_IN_RANGE) {
+			if(creep.withdraw(dropOffBuilder, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
 				creep.moveTo(dropOffBuilder);
 			}
 			else{
-				creep.withdraw(dropOffBuilder, RESOURCE_ENERGY, (creep.carryCapacity - _.sum(creep.carry)))
+				creep.withdraw(dropOffBuilder, RESOURCE_ENERGY)
 				console.log("Builder: " + creep.name + " WITHDRAWING from highest container " + selectedContainer + " for REPAIR.")
 			}
 		}
