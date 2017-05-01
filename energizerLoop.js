@@ -35,6 +35,7 @@ function findEmptyExtension(creep){
 		// Find an extension with capacity.
 		if(extensions[extension].energy < extensions[extension].energyCapacity){
 			var dropOffEnergizer = extensions[extension];
+			var selectedExtension = extensions[extension];
 			return dropOffEnergizer;
 		}
 	}
@@ -46,11 +47,11 @@ function findEmptyExtension(creep){
 		}
 	}
 	// Fill up spawn if no extensions are available.
-	if(spawn.energy < spawn.energyCapacity && dropOffEnergizer == null){ 
+	if(spawn.energy < spawn.energyCapacity && selectedExtension == null){ 
 		var dropOffEnergizer = spawn; 
 		return dropOffEnergizer;
 	}
-	else if(emptyTurret != null && emptyTurret.energy < emptyTurret.energyCapacity){
+	else if(emptyTurret != null && emptyTurret.energy < emptyTurret.energyCapacity && selectedExtension == null){
 		var dropOffEnergizer = emptyTurret;
 		return dropOffEnergizer;
 	}
