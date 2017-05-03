@@ -14,15 +14,15 @@ var spawn = Game.spawns.Pixelation;
  function spawnCreeps(){
 	// Check to see if fight is alive or not, then create him. 
 	if(spawn.canCreateCreep([TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,ATTACK,ATTACK,HEAL,MOVE,MOVE,MOVE,MOVE,MOVE],'fight') == 0){
-		spawn.createCreep([TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,ATTACK,ATTACK,HEAL,MOVE,MOVE,MOVE,MOVE,MOVE],'fight');
+		//spawn.createCreep([TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,ATTACK,ATTACK,HEAL,MOVE,MOVE,MOVE,MOVE,MOVE],'fight');
 	}
 	// Check to see if fight is alive or not, then create him. 
 	if(spawn.canCreateCreep([TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,ATTACK,ATTACK,HEAL,MOVE,MOVE,MOVE,MOVE,MOVE],'fight2') == 0){
-		spawn.createCreep([TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,ATTACK,ATTACK,HEAL,MOVE,MOVE,MOVE,MOVE,MOVE],'fight2');
+		//spawn.createCreep([TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,ATTACK,ATTACK,HEAL,MOVE,MOVE,MOVE,MOVE,MOVE],'fight2');
 	}
 	// Check to see if fight is alive or not, then create him. 
 	if(spawn.canCreateCreep([TOUGH,TOUGH,TOUGH,TOUGH,ATTACK,ATTACK,HEAL,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],'fight3') == 0){
-		spawn.createCreep([TOUGH,TOUGH,TOUGH,TOUGH,ATTACK,ATTACK,HEAL,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],'fight3');
+		//spawn.createCreep([TOUGH,TOUGH,TOUGH,TOUGH,ATTACK,ATTACK,HEAL,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],'fight3');
 	}
 }
  

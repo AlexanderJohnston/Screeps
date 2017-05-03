@@ -1,6 +1,6 @@
-var room1 = Game.rooms['W2N5'];
-var control = room1.controller;
-var spawn = Game.spawns.Pixelation;
+global.room1 = Game.rooms['W2N5'];
+global.control = room1.controller;
+global.spawn = Game.spawns.Pixelation;
 var containers = room1.find(FIND_STRUCTURES, 
 	{ filter: function(object){
 		if(object.structureType == STRUCTURE_CONTAINER){
@@ -13,7 +13,7 @@ var extensions = room1.find(FIND_STRUCTURES,
 			return true; }
 		}
 	})
-var storage = room1.find(FIND_STRUCTURES, {
+var storages = room1.find(FIND_STRUCTURES, {
 	filter: function(object){
         if(object.structureType == STRUCTURE_STORAGE){
 	        return true;
@@ -131,7 +131,7 @@ for(var selectedCreep in Game.creeps){
 	// Check to ensure that the creep is a builder.
 	if(containsObject(creep,builders)){
 		// Save the dropoff point for energy so the builder can retrieve it.
-		var dropOffBuilder = bestContainer(containers); // Selects the highest energy container.
+		var dropOffBuilder = storages[0];
 		// Get the closest construction site.
 		var constructSite = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
 		// Initialize builder functions.

@@ -13,26 +13,26 @@ var spawn = Game.spawns.Pixelation;
  
  function spawnCreeps(){
 	// Check to see if pix3 is alive or not, then create him. 
-	if(spawn.canCreateCreep([WORK,WORK,WORK,WORK,WORK,WORK,WORK,MOVE,MOVE],'pix3') == 0){
-		spawn.createCreep([WORK,WORK,WORK,WORK,WORK,WORK,WORK,MOVE,MOVE],'pix3');
+	if(spawn.canCreateCreep([WORK,WORK,WORK,WORK,WORK,WORK,WORK,MOVE,MOVE],'harvest1') == 0){
+		spawn.createCreep([WORK,WORK,WORK,WORK,WORK,WORK,WORK,MOVE,MOVE],'harvest1');
 	}
 	
 	// Check to see if pix13 is alive or not, then create him. 
-	if(spawn.canCreateCreep([WORK,WORK,WORK,WORK,WORK,WORK,WORK,MOVE,MOVE],'pix13') == 0){
-		spawn.createCreep([WORK,WORK,WORK,WORK,WORK,WORK,WORK,MOVE,MOVE],'pix13');
+	if(spawn.canCreateCreep([WORK,WORK,WORK,WORK,WORK,WORK,WORK,MOVE,MOVE],'harvest2') == 0){
+		spawn.createCreep([WORK,WORK,WORK,WORK,WORK,WORK,WORK,MOVE,MOVE],'harvest2');
 	}
 }
  
  function setRoles(unitArray){
 	// Push the creep object onto the array.
-	if(Game.creeps.pix3){
-		Game.creeps.pix3.memory.role = 'harvester';
-		unitArray.push(Game.creeps.pix3);
+	if(Game.creeps.harvest1){
+		Game.creeps.harvest1.memory.role = 'harvester';
+		unitArray.push(Game.creeps.harvest1);
 	}
 	// Push the creep object onto the array.
-	if(Game.creeps.pix13){
-		Game.creeps.pix13.memory.role = 'harvester';
-		unitArray.push(Game.creeps.pix13);
+	if(Game.creeps.harvest2){
+		Game.creeps.harvest2.memory.role = 'harvester';
+		unitArray.push(Game.creeps.harvest2);
 	}
 	return unitArray;
 }

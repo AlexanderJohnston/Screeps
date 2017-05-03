@@ -10,9 +10,15 @@
 var room1 = Game.rooms['W2N5'];
 var control = room1.controller;
 var spawn = Game.spawns.Pixelation;
+var storages = room1.find(FIND_STRUCTURES, 
+	{ filter: function(object){
+		if(object.structureType == STRUCTURE_CONTAINER || STRUCTURE_STORAGE){
+			return true; }
+		}
+	})
 var containers = room1.find(FIND_STRUCTURES, 
 	{ filter: function(object){
-		if(object.structureType == STRUCTURE_CONTAINER || object.structureType == STRUCTURE_STORAGE){
+		if(object.structureType == STRUCTURE_CONTAINER){
 			return true; }
 		}
 	})
@@ -36,6 +42,7 @@ function findEmptyExtension(creep){
 		if(extensions[extension].energy < extensions[extension].energyCapacity){
 			var dropOffEnergizer = extensions[extension];
 			var selectedExtension = extensions[extension];
+			creep.memory.eFlag = 0;
 			return dropOffEnergizer;
 		}
 	}
@@ -48,15 +55,18 @@ function findEmptyExtension(creep){
 	}
 	// Fill up spawn if no extensions are available.
 	if(spawn.energy < spawn.energyCapacity && selectedExtension == null){ 
-		var dropOffEnergizer = spawn; 
+		var dropOffEnergizer = spawn;
+		creep.memory.eFlag = 0;
 		return dropOffEnergizer;
 	}
 	else if(emptyTurret != null && emptyTurret.energy < emptyTurret.energyCapacity && selectedExtension == null && spawn.energy == spawn.energyCapacity){
 		var dropOffEnergizer = emptyTurret;
+		creep.memory.eFlag = 0;
 		return dropOffEnergizer;
 	}
 	else if(emptyTurret == undefined && selectedExtension == null && spawn.energy == spawn.energyCapacity){ 
 		var dropOffEnergizer = room1.storage // Fill up storage if spawn is full.
+		creep.memory.eFlag = 1;
 		return dropOffEnergizer;
 	}
 }
@@ -89,6 +99,17 @@ function energyDeliver(creep){
 }
 
 function energyAcquire(creep){
+	var selectedContainer = bestContainer(storages); // Selects the highest energy container.
+	console.log("Energizer: " + creep.name + " restocking from highest container " + selectedContainer + ".")
+	if(creep.withdraw(selectedContainer, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
+		creep.moveTo(selectedContainer);
+	}
+	else{
+		creep.withdraw(selectedContainer, RESOURCE_ENERGY);
+	}
+ }
+ 
+ function energyAcquireContainerOnly(creep){
 	var selectedContainer = bestContainer(containers); // Selects the highest energy container.
 	console.log("Energizer: " + creep.name + " restocking from highest container " + selectedContainer + ".")
 	if(creep.withdraw(selectedContainer, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
@@ -130,7 +151,12 @@ init(creep){
 		energyDeliver(creep); 
 	}
 	else{ // Otherwise, go pick up more energy. 
-		energyAcquire(creep); 
+		if(creep.memory.eFlag == 0 || creep.memory.eFlag == undefined){
+		    energyAcquire(creep);
+		}
+		else{
+		    energyAcquireContainerOnly(creep);
+		}
 	}
 }
 };

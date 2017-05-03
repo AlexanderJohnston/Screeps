@@ -23,15 +23,11 @@ var containers = room1.find(FIND_STRUCTURES,
 		// Find an container with capacity.
 		if(_.sum(containers[container].store) < containers[container].storeCapacity){
 			var dropOff = containers[container];
-			return dropOff; // Return the container we've selected.
-			break;
-		}
-		else{
-			var dropOff = control; // No containers available, so upgrade control.
-			break;
 		}
 		return dropOff; // Return the container we've selected.
-		break;
+	}
+	if(dropOff == null || dropOff == undefined){
+	    var dropOff = control; // No containers available, so upgrade control.
 	}
 }
 

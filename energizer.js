@@ -13,43 +13,43 @@ var spawn = Game.spawns.Pixelation;
  
 function spawnCreeps(){
 	// Check to see if pix4 is alive or not, then create him. 
-	if(spawn.canCreateCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],'pix4') == 0){
-		spawn.createCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],'pix4');
+	if(spawn.canCreateCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],'energizer1') == 0){
+		spawn.createCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],'energizer1');
 	}
 	// Check to see if pix4 is alive or not, then create him. 
-	if(spawn.canCreateCreep([WORK,CARRY,CARRY,CARRY,MOVE],'pix6') == 0){
-		spawn.createCreep([WORK,CARRY,CARRY,CARRY,MOVE],'pix6');
+	if(spawn.canCreateCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],'energizer2') == 0){
+		spawn.createCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],'energizer2');
 	}
 	// Check to see if pix7 is alive or not, then create him. 
-	if(spawn.canCreateCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],'pix7') == 0){
-		spawn.createCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],'pix7');
+	if(spawn.canCreateCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],'energizer3') == 0){
+		spawn.createCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],'energizer3');
 	}
 	// Check to see if pix8 is alive or not, then create him.
-	if(spawn.canCreateCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],'pix8') == 0){
-		spawn.createCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],'pix8');
+	if(spawn.canCreateCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],'energizer4') == 0){
+		spawn.createCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],'energizer4');
 	}
 }
  
 function setRoles(unitArray){
 	// Push the creep object onto the array.
-	if(Game.creeps.pix4){
-		Game.creeps.pix4.memory.role = 'energizer';
-		unitArray.push(Game.creeps.pix4);
+	if(Game.creeps.energizer1){
+		Game.creeps.energizer1.memory.role = 'energizer';
+		unitArray.push(Game.creeps.energizer1);
 	}
 	// Push the creep object onto the array.
-	if(Game.creeps.pix6){
-		Game.creeps.pix6.memory.role = 'energizer';
-		unitArray.push(Game.creeps.pix6);
+	if(Game.creeps.energizer2){
+		Game.creeps.energizer2.memory.role = 'energizer';
+		unitArray.push(Game.creeps.energizer2);
 	}
 	// Push the creep object onto the array.
-	if(Game.creeps.pix7){
-		Game.creeps.pix7.memory.role = 'energizer';
-		unitArray.push(Game.creeps.pix7);
+	if(Game.creeps.energizer3){
+		Game.creeps.energizer3.memory.role = 'energizer';
+		unitArray.push(Game.creeps.energizer3);
 	}
 	// Push the creep object onto the array.
-	if(Game.creeps.pix8){
-		Game.creeps.pix8.memory.role = 'energizer';
-		unitArray.push(Game.creeps.pix8);
+	if(Game.creeps.energizer4){
+		Game.creeps.energizer4.memory.role = 'energizer';
+		unitArray.push(Game.creeps.energizer4);
 	}
 	return unitArray;
 }

@@ -12,7 +12,7 @@ var control = room1.controller;
 var spawn = Game.spawns.Pixelation;
 var containers = room1.find(FIND_STRUCTURES, 
 	{ filter: function(object){
-		if(object.structureType == STRUCTURE_CONTAINER){
+		if(object.structureType == STRUCTURE_STORAGE){
 			return true; }
 		}
 	})
@@ -50,28 +50,30 @@ function energyDeliver(creep){
 }
 
 function energyAcquire(creep){// This creep wasn't full, so it's going to find more energy.
-	var droppedEnergy = creep.pos.findClosestByPath(FIND_DROPPED_ENERGY)
-	if(creep.pickup(droppedEnergy) == ERR_NOT_IN_RANGE){
-		creep.moveTo(droppedEnergy);
+	var selectedContainer = containers[0]; // Selects the highest energy container.
+	console.log("Energizer: " + creep.name + " restocking from highest container " + selectedContainer + ".")
+	if(creep.withdraw(selectedContainer, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
+		creep.moveTo(selectedContainer);
 	}
 	else{
-		creep.pickup(droppedEnergy);
-		console.log("Upgrader: " + creep.name + " PICKING UP " + droppedEnergy + ".");
+		creep.withdraw(selectedContainer, RESOURCE_ENERGY);
 	}
  }
  
 module.exports = {
 
 init(creep){
-	// Check to see if energy is full.
-	energyFull(creep);
-	// While delivery is enabled, go home to turn it in.
-	if(creep.memory.deliver == true){ 
-		energyDeliver(creep); 
-	}
-	else{ // Otherwise, go pick up more energy. 
-		energyAcquire(creep); 
-	}
+    if(_.sum(containers[0].store)>=50000){
+	    // Check to see if energy is full.
+	    energyFull(creep);
+	    // While delivery is enabled, go home to turn it in.
+	    if(creep.memory.deliver == true){ 
+	    	energyDeliver(creep); 
+	    }
+	    else{ // Otherwise, go pick up more energy. 
+		    energyAcquire(creep); 
+	    }
+    }
 }
 
 };

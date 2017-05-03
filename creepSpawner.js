@@ -140,6 +140,95 @@ module.exports = {
         if(!spawnPoint){
             spawnPoint = Game.spawns.Pixelation;
         }
+		
+		var manager = require('roleManager');
+		
+		if(!manager.roleExists(role)){
+			return;
+		}
+		
+		if(!this.canSpawn(spawnPoint, role)){
+			return;
+		}
+		
+		if(memory == undefined){
+			memory = { };
+		}
+		
+		memory['role'] = role;
+		
+		var nameCount = 0;
+		var name = null;
+		while(name == null){
+			nameCount++;
+			var tryName = role + nameCount;
+			if(Game.creeps[tryName] == undefined){
+				name = tryName;
+			}
+		}
         
-    }
+		console.log('Spawning ' + role);
+		spawnPoint.createCreep(manager.getRoleBodyParts(role),name,memory);
+    },
+	
+	canSpawn : function(spawnPoint, role){
+		if(typeof spawnPoint == "string" && role == undefined){
+			role = spawnPoint;
+			spawnPoint = Game.spawns.Pixelation;
+		}
+		
+		return spawnPoint.energy >= this.spawnCost(role){
+			&&(spawnPoint.spawning == null
+				|| spawnPoint.spawning == undefined);
+			}
+	},
+	
+	spawnCost : function(role){
+		var manager = require('roleManager');
+		var parts = manager.getRoleBodyParts(role);
+		
+		var total = 0;
+		for(var index in parts){
+			var part = parts[index];
+			switch(part){
+				case Game.MOVE:
+					total += 50
+					break;
+
+				case Game.WORK:
+					total += 20
+					break;
+
+				case Game.CARRY:
+					total += 50
+					break;
+
+				case Game.ATTACK:
+					total += 100
+					break;
+
+				case Game.RANGED_ATTACK:
+					total += 150
+					break;
+
+				case Game.HEAL:
+					total += 200
+					break;
+
+				case Game.TOUGH:
+					total += 5
+					break;
+			}
+		}
+		
+		return total;
+	},
+	
+	killAll : function(role){
+		for(var i in Game.creeps){
+			if(role == undefined || Game.creeps[i].memory.role == role){
+				Game.creeps[i].suicide();
+			}
+		}
+	}
 };
