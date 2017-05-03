@@ -21,19 +21,30 @@ var storages = room1.find(FIND_STRUCTURES, {
 	}
 }); 
 
+// testing new system
+var main = require('creepSpawner');
+var init = require('controller');
+var work = require('doJob');
+main.initSpawnQueue();
+init.smartControl();
+main.spawnCreep();
+work(Game.creeps);
+
+
 // Load the creep modules.
 var energizer = require('energizer');
-var fighter = require('fighter');
+//var harvester = require ('harvester');
 var transporter = require ('transporter');
-var harvester = require ('harvester');
 var builder = require ('builder');
+var fighter = require('fighter');
 var upgrader = require('upgrader');
 	
 // Spawn the creeps, set their roles, and return an array of all available creeps in that role.
-var harvesters = harvester.init();
-var builders = builder.init();
-var transporters = transporter.init();
+
 var energizers = energizer.init();
+//var harvesters = harvester.init();
+var transporters = transporter.init();
+var builders = builder.init();
 var fighters = fighter.init();
 var upgraders = upgrader.init();
 
@@ -63,7 +74,7 @@ for(var selectedCreep in Game.creeps){
 		fightLoop.init(creep);
 	}
 }
-// # HARVESTER # Harvests energy as fast as possible without moving.
+/*// # HARVESTER # Harvests energy as fast as possible without moving.
 // Get a list of all creeps available.
 for(var selectedCreep in Game.creeps){
 	// Save the definition to our selected creep.
@@ -81,7 +92,7 @@ for(var selectedCreep in Game.creeps){
 			creep.harvest(bestNode);
 		}
 	}
-}
+}*/
 // # TRANSPORTER # Fills containers and then upgrades the controller.
 // Get a list of all creeps available.
 for(var selectedCreep in Game.creeps){

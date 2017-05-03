@@ -13,8 +13,8 @@ var spawn = Game.spawns.Pixelation;
  
 function spawnCreeps(){
 	// Check to see if pix4 is alive or not, then create him. 
-	if(spawn.canCreateCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],'energizer1') == 0){
-		spawn.createCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],'energizer1');
+	if(spawn.canCreateCreep([WORK,CARRY,CARRY,MOVE,MOVE],'energizer1') == 0){
+		spawn.createCreep([WORK,CARRY,CARRY,MOVE,MOVE],'energizer1');
 	}
 	// Check to see if pix4 is alive or not, then create him. 
 	if(spawn.canCreateCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],'energizer2') == 0){

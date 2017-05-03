@@ -13,7 +13,7 @@ var unit = {
                 this.creep.memory.onSpawned = true;
             }
             
-            this.action(this.creep); // Function pointer I guess.
+            this.action(this.creep); // Function pointer I fucking hope.
             
             if(this.creep.ticksToLive == 1){
                 this.beforeAge();
@@ -36,7 +36,7 @@ var unit = {
         getParts : function(){
             var _ = require('lodash');
             
-            var extensions = Game.getRoom(room1).find(FIND_MY_STRUCTURES, {
+            var extensions = room1.find(FIND_MY_STRUCTURES, {
                 filter : function(structure){
                     return (structure.structureType == STRUCTURE_EXTENSION && structure.energy >= 50);
                 }
@@ -57,7 +57,6 @@ var unit = {
         },
         
         action : function() { },
-        
         
         onSpawn : function() { },
         
@@ -179,5 +178,6 @@ var unit = {
 
 		return creep.pos.findNearest(Game.HOSTILE_CREEPS);
     }
+}
 
 module.exports = unit;

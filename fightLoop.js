@@ -10,12 +10,7 @@
 var room1 = Game.rooms['W2N5'];
 var control = room1.controller;
 var spawn = Game.spawns.Pixelation;
-var ramparts = room1.find(FIND_STRUCTURES, 
-	{ filter: function(object){
-		if(object.structureType == STRUCTURE_RAMPART){
-			return true; }
-		}
-	})
+var flag = room1.find(FIND_FLAGS)
  
 function findClosestEnemy(creep){
 	var enemy = creep.pos.findClosestByPath(FIND_HOSTILE_CREEPS)
@@ -32,9 +27,9 @@ function attackEnemy(creep,enemy){
 }
 
 function enterRampart(creep){
-    var rampart = creep.pos.findClosestByPath(ramparts);
-    if(creep.pos.isEqualTo(rampart.pos)){ }
-    else{ creep.moveTo(rampart); }
+    var rest = creep.pos.findClosestByPath(flag);
+    if(creep.pos.isEqualTo(rest.pos)){ }
+    else{ creep.moveTo(rest); }
 }
 module.exports = {
 	init(creep){

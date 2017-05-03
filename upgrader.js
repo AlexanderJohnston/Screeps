@@ -14,7 +14,7 @@ var spawn = Game.spawns.Pixelation;
  function spawnCreeps(){
 	// Check to see if pix2 is alive or not, then create him. 
 	if(spawn.canCreateCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,MOVE],'upgrade') == 0){
-		spawn.createCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,MOVE],'upgrade');
+		//spawn.createCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,MOVE],'upgrade');
 	}
 	// Check to see if pix2 is alive or not, then create him. 
 	if(spawn.canCreateCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,MOVE],'upgrade2') == 0){

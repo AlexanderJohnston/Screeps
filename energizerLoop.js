@@ -82,7 +82,7 @@ function energyFull(creep){
 function energyDeliver(creep){
 	// Find an empty extension.
 	var dropOffEnergizer = findEmptyExtension(creep);
-	if (dropOffEnergizer != null){
+	if (dropOffEnergizer != null && creep.memory.deliver == true){
 	    // Check to see if creep is within range of control.
 	    if(creep.transfer(dropOffEnergizer, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
 	    	creep.moveTo(dropOffEnergizer);
@@ -100,12 +100,12 @@ function energyDeliver(creep){
 
 function energyAcquire(creep){
 	var selectedContainer = bestContainer(storages); // Selects the highest energy container.
-	console.log("Energizer: " + creep.name + " restocking from highest container " + selectedContainer + ".")
 	if(creep.withdraw(selectedContainer, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
 		creep.moveTo(selectedContainer);
 	}
 	else{
 		creep.withdraw(selectedContainer, RESOURCE_ENERGY);
+		console.log("Energizer: " + creep.name + " restocking from highest container " + selectedContainer + ".")
 	}
  }
  
@@ -147,16 +147,14 @@ init(creep){
 	// Check to see if energy is full.
 	energyFull(creep);
 	// While delivery is enabled, go home to turn it in.
-	if(creep.memory.deliver == true){ 
-		energyDeliver(creep); 
-	}
-	else{ // Otherwise, go pick up more energy. 
-		if(creep.memory.eFlag == 0 || creep.memory.eFlag == undefined){
-		    energyAcquire(creep);
-		}
-		else{
-		    energyAcquireContainerOnly(creep);
-		}
+	energyDeliver(creep);
+	if(creep.memory.deliver != true){
+    	if(creep.memory.eFlag == 0 || creep.memory.eFlag == undefined){
+		       energyAcquire(creep);
+        }
+	    else{
+	        energyAcquireContainerOnly(creep);
+	    }
 	}
 }
 };
