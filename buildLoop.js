@@ -58,7 +58,29 @@ function repairing(creep, repairSite){
 		}
 		creep.repair(repairSite)
 	}
+	else{
+	    restB(creep);
+	}
 }
+
+function restB(builder){
+             var creep = builder;
+             
+             var distance = 1;
+             var restTarget = creep.pos.findClosestByPath(FIND_MY_SPAWNS);
+            var myFlags = Game.flags;
+            for(var i in myFlags){
+                 var flag = myFlags[i];
+                 if(creep.pos.inRangeTo(flag, distance) || creep.pos.findPathTo(flag).length > 0){
+                     restTarget = flag;
+                     break;
+                 }
+             }
+             
+             if(creep.pos.findPathTo(restTarget).length > distance){
+                 creep.moveTo(restTarget);
+             }
+         }
  
 
 module.exports = {

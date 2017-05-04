@@ -24,7 +24,7 @@ var containers = room1.find(FIND_STRUCTURES,
 	})
 var extensions = room1.find(FIND_STRUCTURES, 
 	{ filter: function(object){
-		if(object.structureType == STRUCTURE_EXTENSION){
+		if(object.structureType == STRUCTURE_EXTENSION && object.energy < 50){
 			return true; }
 		}
 	})
@@ -37,15 +37,17 @@ var turrets = room1.find(FIND_STRUCTURES,
 
 function findEmptyExtension(creep){
 // Save an extension which needs energy.
-	for(var extension in extensions){
+    if(extensions != null && extensions != undefined){
+        for(var extension in extensions){
 		// Find an extension with capacity.
-		if(extensions[extension].energy < extensions[extension].energyCapacity){
-			var dropOffEnergizer = extensions[extension];
-			var selectedExtension = extensions[extension];
-			creep.memory.eFlag = 0;
-			return dropOffEnergizer;
-		}
-	}
+		    if(extensions[extension].energy < extensions[extension].energyCapacity){
+			    var dropOffEnergizer = extensions[extension];
+			    var selectedExtension = extensions[extension];
+			    creep.memory.eFlag = 0;
+			    return dropOffEnergizer;
+		    }
+	    }
+    }
 // Save a turret which needs energy.
     for(var turret in turrets){
 		// Find an extension with capacity.

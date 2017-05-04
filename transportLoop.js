@@ -19,15 +19,24 @@ var containers = room1.find(FIND_STRUCTURES,
  
  function findEmptyContainer(creep){
 	// Save the closest container.
+	var dropOff = null
 	for(var container in containers){
 		// Find an container with capacity.
 		if(_.sum(containers[container].store) < containers[container].storeCapacity){
-			var dropOff = containers[container];
+			dropOff = containers[container];
 			return dropOff;
 		}
 	}
-	if(dropOff == null || dropOff == undefined){
-	    var dropOff = control; // No containers available, so upgrade control.
+	if(dropOff == null || dropOff == undefined){ // No containers available, so upgrade control.
+	    var dropOff = room1.find(FIND_STRUCTURES, { 
+	        filter : function(object){
+	            if(object.structureType == STRUCTURE_STORAGE){
+	                return true; 
+	                
+	            }
+	        }
+	    }); 
+	    return dropOff[0];
 	}
 }
 
@@ -46,7 +55,7 @@ function energyDeliver(creep){
 		creep.moveTo(dropOff);
 	}
 	else{ // Creep is within range and can transfer energy.
-		creep.transfer(dropOff, RESOURCE_ENERGY, _.sum(creep.carry));
+		creep.transfer(dropOff, RESOURCE_ENERGY);
 		console.log("Transporter: " + creep.name + " POWERING " + dropOff + " in progress.")
 	}
 	// Once the creep has emptied out their energy, disable delivery.

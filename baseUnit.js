@@ -74,7 +74,7 @@ var unit = {
              var creep = this.creep;
              
              var distance = 4;
-             var restTarget = cree.pos.findNearest(FIND_MY_SPAWNS);
+             var restTarget = cree.pos.findClosestByPath(FIND_MY_SPAWNS);
              
              if(!civilian){
                  var flags = Game.flags;
@@ -96,7 +96,7 @@ var unit = {
 		var creep = this.creep;
 
 		if(!target)
-			target = creep.pos.findNearest(Game.HOSTILE_CREEPS);
+			target = creep.pos.findClosestByPath(Game.HOSTILE_CREEPS);
 
 		if(target) {
 			if (target.pos.inRangeTo(creep.pos, 3) ) {
@@ -111,7 +111,7 @@ var unit = {
 	{
 		var creep = this.creep;
 
-		var target = creep.pos.findNearest(Game.HOSTILE_CREEPS);
+		var target = creep.pos.findClosestByPath(Game.HOSTILE_CREEPS);
 		if(target !== null && target.pos.inRangeTo(creep.pos, 3))
 			creep.moveTo(creep.pos.x + creep.pos.x - target.pos.x, creep.pos.y + creep.pos.y - target.pos.y );
 	},
@@ -141,7 +141,7 @@ var unit = {
 	{
 		var creep = this.creep;
 
-		var closeArchers = creep.pos.findNearest(Game.HOSTILE_CREEPS, {
+		var closeArchers = creep.pos.findClosestByPath(Game.HOSTILE_CREEPS, {
 			filter: function(enemy)
 			{
 				return enemy.getActiveBodyparts(Game.RANGED_ATTACK) > 0
@@ -152,7 +152,7 @@ var unit = {
 		if(closeArchers != null)
 			return closeArchers;
 
-		var closeMobileMelee = creep.pos.findNearest(Game.HOSTILE_CREEPS, {
+		var closeMobileMelee = creep.pos.findClosestByPath(Game.HOSTILE_CREEPS, {
 			filter: function(enemy)
 			{
 				return enemy.getActiveBodyparts(Game.ATTACK) > 0
@@ -164,7 +164,7 @@ var unit = {
 		if(closeMobileMelee != null)
 			return closeMobileMelee;
 
-		var closeHealer = creep.pos.findNearest(Game.HOSTILE_CREEPS, {
+		var closeHealer = creep.pos.findClosestByPath(Game.HOSTILE_CREEPS, {
 			filter: function(enemy)
 			{
 				return enemy.getActiveBodyparts(Game.HEAL) > 0
@@ -176,7 +176,7 @@ var unit = {
 		if(closeHealer != null)
 			return closeHealer;
 
-		return creep.pos.findNearest(Game.HOSTILE_CREEPS);
+		return creep.pos.findClosestByPath(Game.HOSTILE_CREEPS);
     }
 }
 

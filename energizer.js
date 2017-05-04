@@ -17,6 +17,10 @@ function spawnCreeps(){
 		spawn.createCreep([WORK,CARRY,CARRY,MOVE,MOVE],'energizer1');
 	}
 	// Check to see if pix4 is alive or not, then create him. 
+	if(spawn.canCreateCreep([WORK,CARRY,CARRY,MOVE,MOVE],'energizer11') == 0){
+		spawn.createCreep([WORK,CARRY,CARRY,MOVE,MOVE],'energizer11');
+	}
+	// Check to see if pix4 is alive or not, then create him. 
 	if(spawn.canCreateCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],'energizer2') == 0){
 		spawn.createCreep([WORK,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],'energizer2');
 	}
@@ -35,6 +39,11 @@ function setRoles(unitArray){
 	if(Game.creeps.energizer1){
 		Game.creeps.energizer1.memory.role = 'energizer';
 		unitArray.push(Game.creeps.energizer1);
+	}
+	// Push the creep object onto the array.
+	if(Game.creeps.energizer11){
+		Game.creeps.energizer11.memory.role = 'energizer';
+		unitArray.push(Game.creeps.energizer11);
 	}
 	// Push the creep object onto the array.
 	if(Game.creeps.energizer2){
