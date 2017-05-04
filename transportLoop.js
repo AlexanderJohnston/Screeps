@@ -23,8 +23,8 @@ var containers = room1.find(FIND_STRUCTURES,
 		// Find an container with capacity.
 		if(_.sum(containers[container].store) < containers[container].storeCapacity){
 			var dropOff = containers[container];
+			return dropOff;
 		}
-		return dropOff; // Return the container we've selected.
 	}
 	if(dropOff == null || dropOff == undefined){
 	    var dropOff = control; // No containers available, so upgrade control.
@@ -42,11 +42,8 @@ function energyDeliver(creep){
 	// Find an empty container.
 	var dropOff = findEmptyContainer(creep);
 	// Check to see if creep is within range of control.
-	if(creep.transfer(dropOff, RESOURCE_ENERGY, _.sum(creep.carry)) == ERR_NOT_IN_RANGE){
+	if(creep.transfer(dropOff, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
 		creep.moveTo(dropOff);
-	}
-	else if(creep.transfer(dropOff, RESOURCE_ENERGY, _.sum(creep.carry)) == ERR_FULL){
-		creep.transfer(dropOff, RESOURCE_ENERGY, 1);
 	}
 	else{ // Creep is within range and can transfer energy.
 		creep.transfer(dropOff, RESOURCE_ENERGY, _.sum(creep.carry));

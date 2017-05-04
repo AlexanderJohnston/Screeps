@@ -63,7 +63,7 @@ function energyAcquire(creep){// This creep wasn't full, so it's going to find m
 module.exports = {
 
 init(creep){
-    if(_.sum(containers[0].store)>=50000){
+    if(_.sum(containers[0].store)>=90000){
 	    // Check to see if energy is full.
 	    energyFull(creep);
 	    // While delivery is enabled, go home to turn it in.

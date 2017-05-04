@@ -11,6 +11,8 @@ module.exports = function(selected)
 			continue;
 
 		var role = creep.memory.role;
+		
+		if(creep.memory.role != "harvester"){continue;}
 
 		if(roleManager.roleExists(role)){
 			role = roleManager.getRole(role);
