@@ -30,6 +30,13 @@ init.smartControl();
 main.spawnCreep();
 work(Game.creeps);
 
+// Extending source with a new property to hold values of workers.
+if(!Source.memory){
+    var sMemory = require('memory');
+    sMemory.createMemory(Source); 
+    console.log("############    ---    MEMORY SOURCE    ---    ############");
+}
+
 
 // Load the creep modules.
 var energizer = require('energizer');

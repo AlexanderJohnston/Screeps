@@ -16,7 +16,7 @@ var unit = {
             this.action(this.creep); // Function pointer I fucking hope.
             
             if(this.creep.ticksToLive == 1){
-                this.beforeAge();
+                this.beforeAge(this.creep);
             }
         },
         

@@ -13,7 +13,6 @@ module.exports = function(selected)
 		var role = creep.memory.role;
 
 		if(roleManager.roleExists(role)){
-		    console.log(role + " WORK WORK");
 			role = roleManager.getRole(role);
 		}
 
