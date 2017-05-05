@@ -28,8 +28,7 @@ function attackEnemy(creep,enemy){
 
 function enterRampart(creep){
     var rest = creep.pos.findClosestByPath(flag);
-    if(creep.pos.isEqualTo(rest.pos)){ }
-    else{ creep.moveTo(rest); }
+    creep.moveTo(rest);
 }
 module.exports = {
 	init(creep){

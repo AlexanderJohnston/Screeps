@@ -13,16 +13,16 @@ var spawn = Game.spawns.Pixelation;
  
  function spawnCreeps(){
 	// Check to see if pix2 is alive or not, then create him. 
-	if(spawn.canCreateCreep([WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE],'upgrade') == 0){
-		spawn.createCreep([WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE],'upgrade');
+	if(spawn.canCreateCreep([WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,CARRY,MOVE,MOVE,MOVE,MOVE],'upgrade') == 0){
+		spawn.createCreep([WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,CARRY,MOVE,MOVE,MOVE,MOVE],'upgrade');
 	}
 	// Check to see if pix2 is alive or not, then create him. 
-	if(spawn.canCreateCreep([WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE],'upgrade2') == 0){
-		//spawn.createCreep([WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE],'upgrade2');
+	if(spawn.canCreateCreep([WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,CARRY,MOVE,MOVE,MOVE,MOVE],'upgrade2') == 0){
+		spawn.createCreep([WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,CARRY,MOVE,MOVE,MOVE,MOVE],'upgrade2');
 	}
 	// Check to see if pix2 is alive or not, then create him. 
-	if(spawn.canCreateCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,MOVE],'upgrade3') == 0){
-		//spawn.createCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,MOVE],'upgrade3');
+	if(spawn.canCreateCreep([WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,CARRY,MOVE,MOVE,MOVE,MOVE],'upgrade3') == 0){
+		spawn.createCreep([WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,CARRY,MOVE,MOVE,MOVE,MOVE],'upgrade3');
 	}
 	// Check to see if pix2 is alive or not, then create him. 
 	if(spawn.canCreateCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,MOVE],'upgrade4') == 0){

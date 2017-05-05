@@ -30,15 +30,7 @@ var harvester = {
 		        }
 		    }
 		}
-		for(var i in sources){
-		        //sources[i].memory = null;
-		        if(sources[i].memory == undefined || sources[i].memory == null){
-		            if(Game.getObjectById(creep.memory.sources) === sources[i]){
-		                sources[i].memory = creep.id;
-		            }
-		            
-		        }
-		    }
+
 		creep.moveTo(Game.getObjectById(creep.memory.sources));
 		creep.harvest(Game.getObjectById(creep.memory.sources));
 	},
