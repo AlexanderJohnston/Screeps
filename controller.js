@@ -9,7 +9,7 @@
 var countType = require('countType');
 module.exports = {
 smartControl : function(){
-    var requiredUnits = ['harvester','harvester'];
+    var requiredUnits = ['harvester','harvester','energizer','energizer','energizer','energizer'];
     
     var gatheredUnits = { };
     for(var i in requiredUnits){
